@@ -36,10 +36,8 @@ public class Client
             socket = new Socket(address, port);
             this.team = team;
             System.out.println("Team : " + team + " connected.");
-  
             // Client takes input from socket
             input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-  
             // And also sends its output to the socket
             out = new PrintWriter(socket.getOutputStream(), true);
         }
@@ -53,7 +51,7 @@ public class Client
         }
 
         // get game info and send team name
-         // receive game info from server  
+        // receive game info from server  
         String[] gameInfoSplit = getMove();
         this.num_players = Integer.parseInt(gameInfoSplit[0]);
         this.num_stones = Integer.parseInt(gameInfoSplit[1]);
@@ -72,7 +70,6 @@ public class Client
         if (args.length == 0) {
             throw new IllegalArgumentException("Please provide arguements in form : Client.java host port team_name");
         }
-
         //parse the arguements 
         try {
             host = args[0];
@@ -146,7 +143,6 @@ public class Client
 
     }
 
-
     class Move {
         int row;
         int col;
@@ -161,8 +157,8 @@ public class Client
     public double computeDistance(int r1, int c1, int r2, int c2) {
         return Math.sqrt((r2 - r1) * (r2 - r1) + (c2  - c1) * (c2  - c1));
     }
-    // check valid move
 
+    // check valid move
     public boolean isVaidMove(int row, int col) {
         for(Move move : this.moves) {
             if(computeDistance(move.row, move.col, row, col) < MIN_DIST) {
@@ -173,7 +169,6 @@ public class Client
     }
 
     // add your algorithm here
-
     public Move generateMyMove() {
         int moveRow = 0;
         int moveCol = 0;
