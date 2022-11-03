@@ -172,6 +172,8 @@ public class Client
         return true;
     }
 
+    // add your algorithm here
+
     public Move generateMyMove() {
         int moveRow = 0;
         int moveCol = 0;
