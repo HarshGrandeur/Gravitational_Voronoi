@@ -157,8 +157,9 @@ class VoronoiGame:
           self.pull[self.current_player][row][col] = 1
         # update current player's pull
         else:
-          d = self.__compute_distance(row, col, move_row, move_col)
-          self.pull[self.current_player][row][col] += float(float(1) / (d*d))
+          # FIX: replace power and sqrt with abs to speed up computation
+          #  because sqrt(d) * sqrt(d) = abs(d)
+          self.pull[self.current_player][row][col] += float(float(1) / abs((move_row - row)**2 + (move_col - col)**2))
 
         # first move claims every cell on the grid
         if self.moves_made == 1:
