@@ -152,12 +152,13 @@ class VoronoiGame:
     # note: score ignores stones, because each player has the same number of stones
     for row in range(self.grid_size):
       for col in range(self.grid_size):
-        # avoid division by 0
+        # FIX: stone should applies a pull of 1 to its own square
         if (row == move_row and col == move_col):
-          continue
+          self.pull[self.current_player][row][col] = 1
         # update current player's pull
-        d = self.__compute_distance(row, col, move_row, move_col)
-        self.pull[self.current_player][row][col] += float(float(1) / (d*d))
+        else:
+          d = self.__compute_distance(row, col, move_row, move_col)
+          self.pull[self.current_player][row][col] += float(float(1) / (d*d))
 
         # first move claims every cell on the grid
         if self.moves_made == 1:
