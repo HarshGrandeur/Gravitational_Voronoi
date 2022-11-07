@@ -10,6 +10,8 @@ The server is written in Python 3. To run the server, execute:
 python3 voronoi_game.py <number-of-stones> <number-of-players> <host-ip> <port> [<use-graphics>]
 ```
 
+(`<host-ip>` can be set to localhost if testing locally)
+
 The last command line argument `<use-graphics>` is optional and graphics is only activated if you pass a `1` for this argument.
 
 Also note that ports `10000` and `8080` are reserved for the web interface, so please use some other port. After all clients have connected, press `<Enter>` to start the game.
@@ -22,11 +24,21 @@ In our implementation, there is no flag that indicates which client is the first
 
 In addition, player rotation after each game is built in, so that each player would play exactly one game as the first one to move. More details on how this works are included below.
 
-A sample client in Python 3 is provided. To run the sample client, execute:
+Sample clients in Python 3, Java and C++ are provided. To run the sample clients, change the directory to the client directory (for eg. `cd Clients/Python/`) and then execute:
 
 ```
-python3 voronoi_client.py <server-ip> <port> <team-name>
+python3 Client.py <server-ip> <port> <team-name>
 ```
+
+```
+javac Client.java && java Client <server-ip> <port> <team-name>
+```
+
+```
+g++ Client.cpp -o Client && Client <server-ip> <port> <team-name>
+```
+
+(`<server-ip>` can be set to localhost if testing locally)
 
 If you wish to write your own client, please follow the server-client communication protocol:
 
